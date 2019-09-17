@@ -1,0 +1,45 @@
+
+#orderContainer
+{
+    font-family: 'Lato', sans-serif;
+    width: 80%;
+    padding-top: 250px;
+    padding-bottom: 150px;
+    margin: auto;
+    text-align: center;
+}
+#orderContainer i
+{
+    color: rgb(5, 187, 5);
+    padding-bottom: 30px;
+    font-size: 10em;
+}
+#aboutCheck p
+{
+    font-weight: 100;
+    letter-spacing: 1px;
+}
+#aboutCheck h1
+{
+    letter-spacing: 1px;
+    word-spacing: 1px;
+}
+
+/* ----------------------------- MEDIA QUERY --------------------------- */
+
+@media(max-width: 700px)
+{
+    #orderContainer i
+    {
+        font-size: 8em;
+        padding-bottom: 30px;
+    }
+    h1
+    {
+        font-size: 18px;
+    }
+    p
+    {
+        font-size: 15px;
+    }
+}

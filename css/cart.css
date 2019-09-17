@@ -1,0 +1,113 @@
+body
+{
+    margin: 0;
+    font-family: 'Lato', sans-serif;
+}
+#cartMainContainer
+{
+    padding: 90px 50px;
+}
+#cartContainer
+{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+}
+img
+{
+    width: 80px;
+    float: left;
+    border-radius: 10px;
+    margin-right: 50px;
+}
+#boxContainer
+{
+    display: grid;
+    grid-gap: 20px;
+    padding: 20px;
+    width: 100%;
+}
+#box
+{
+    background-color: white;
+    box-shadow: 1px 2px 6px 2px rgb(219, 219, 219);
+    border-radius: 10px;
+    width: 100%;
+    /* margin: auto */
+    padding: 20px 10px;
+}
+#box:hover
+{
+    box-shadow: 0px 1px 3px 2px rgb(185, 185, 185);
+}
+#totalContainer
+{
+    width: 50%;
+    padding: 20px;
+    margin: auto;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 1px 2px 6px 2px rgb(219, 219, 219);
+}
+#totalContainer:hover
+{
+    box-shadow: 0px 1px 3px 2px rgb(185, 185, 185);
+}
+button
+{
+    padding: 8px 12px;
+    background-color: rgb(3, 122, 122);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+button a
+{
+    text-decoration: none;
+    color: white;
+    font-size: 15px;
+}
+button:hover
+{
+    background-color: rgb(3, 94, 94);
+}
+button a:focus
+{
+    outline: none;
+}
+
+/* ----------------------------- MEDIA QUERY --------------------------- */
+
+@media(max-width: 800px)
+{
+    img
+    {
+        width: 60px;
+        margin-right: 20px;
+    }
+    h3, h4
+    {
+        font-size: 14px;
+    }
+    h2
+    {
+        font-size: 18px;
+    }
+    #cartMainContainer
+    {
+        padding: 90px 20px;
+    }
+}
+@media(max-width: 555px)
+{
+    #cartContainer
+    {
+        display: grid;
+        grid-template-columns: 1fr;
+    }    
+    #boxContainer
+    {
+        padding: 20px;
+        width: 80%;
+    }
+}
