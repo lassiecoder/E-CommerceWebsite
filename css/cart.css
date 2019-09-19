@@ -26,6 +26,7 @@ img
     grid-gap: 20px;
     padding: 20px;
     width: 100%;
+    /* float: left; */
 }
 #box
 {

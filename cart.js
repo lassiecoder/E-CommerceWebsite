@@ -6,13 +6,17 @@ if(document.cookie.indexOf(',counter=')>=0)
     document.getElementById("badge").innerHTML = counter
 }
 
-function dynamicCartSection(ob,amount)
-{
+// function dynamicCartSection(ob,itemCounter)
+// {
     let cartContainer = document.getElementById('cartContainer')
 
     let boxContainerDiv = document.createElement('div')
     boxContainerDiv.id = 'boxContainer'
 
+
+
+    function dynamicCartSection(ob,itemCounter)
+{
     let boxDiv = document.createElement('div')
     boxDiv.id = 'box'
     boxContainerDiv.appendChild(boxDiv)
@@ -22,8 +26,8 @@ function dynamicCartSection(ob,amount)
     boxDiv.appendChild(boxImg)
 
     let boxh3 = document.createElement('h3')
-    // let h3Text = document.createTextNode(ob.name + '×' + 1)
-    let h3Text = document.createTextNode(ob.name)
+    let h3Text = document.createTextNode(ob.name + ' × ' + itemCounter)
+    // let h3Text = document.createTextNode(ob.name)
     boxh3.appendChild(h3Text)
     boxDiv.appendChild(boxh3)
 
@@ -33,47 +37,60 @@ function dynamicCartSection(ob,amount)
     boxDiv.appendChild(boxh4)
 
     // console.log(boxContainerDiv);
-    let totalContainerDiv = document.createElement('div')
-    totalContainerDiv.id = 'totalContainer'
-
-    let totalDiv = document.createElement('div')
-    totalDiv.id = 'total'
-    totalContainerDiv.appendChild(totalDiv)
-
-    let totalh2 = document.createElement('h2')
-    let h2Text = document.createTextNode('Total Amount')
-    totalh2.appendChild(h2Text)
-    totalDiv.appendChild(totalh2)
-
-    let totalh4 = document.createElement('h4')
-    let totalh4Text = document.createTextNode('Amount: Rs ' + amount)
-    totalh4Text.id = 'toth4'
-    totalh4.appendChild(totalh4Text)
-    totalDiv.appendChild(totalh4)
-
-    let buttonDiv = document.createElement('div')
-    buttonDiv.id = 'button'
-    totalDiv.appendChild(buttonDiv)
-
-    let buttonTag = document.createElement('button')
-    buttonDiv.appendChild(buttonTag)
-  
-    let buttonLink = document.createElement('a')
-    buttonLink.href = '/orderPlaced.html?'
-    buttonTag.appendChild(buttonLink)
-
-    buttonText = document.createTextNode('Place Order')
-    buttonTag.onclick = function()
-    {
-        console.log("clicked")
-    }
 
     buttonLink.appendChild(buttonText)
     cartContainer.appendChild(boxContainerDiv)
     cartContainer.appendChild(totalContainerDiv)
+    // let cartMain = document.createElement('div')
+    // cartmain.id = 'cartMainContainer'
+    // cartMain.appendChild(totalContainerDiv)
 
     return cartContainer
 }
+
+let totalContainerDiv = document.createElement('div')
+totalContainerDiv.id = 'totalContainer'
+
+let totalDiv = document.createElement('div')
+totalDiv.id = 'total'
+totalContainerDiv.appendChild(totalDiv)
+
+let totalh2 = document.createElement('h2')
+let h2Text = document.createTextNode('Total Amount')
+totalh2.appendChild(h2Text)
+totalDiv.appendChild(totalh2)
+
+
+function amountUpdate(amount)
+{
+    let totalh4 = document.createElement('h4')
+    // let totalh4Text = document.createTextNode(amount)
+    let totalh4Text = document.createTextNode('Amount: Rs ' + amount)
+    totalh4Text.id = 'toth4'
+    totalh4.appendChild(totalh4Text)
+    totalDiv.appendChild(totalh4)
+    totalDiv.appendChild(buttonDiv)
+    console.log(totalh4);
+}
+
+
+let buttonDiv = document.createElement('div')
+buttonDiv.id = 'button'
+totalDiv.appendChild(buttonDiv)
+
+let buttonTag = document.createElement('button')
+buttonDiv.appendChild(buttonTag)
+
+let buttonLink = document.createElement('a')
+buttonLink.href = '/orderPlaced.html?'
+buttonTag.appendChild(buttonLink)
+
+buttonText = document.createTextNode('Place Order')
+buttonTag.onclick = function()
+{
+    console.log("clicked")
+}  
+
 
 //dynamicCartSection()
 
@@ -99,12 +116,23 @@ httpRequest.onreadystatechange = function()
 
             let i;
             let totalAmount = 0
-
             for(i=1; i<=counter; i++)
             {
-                totalAmount += Number(contentTitle[item[i-1]-1].price)
-                dynamicCartSection(contentTitle[item[i-1]-1],totalAmount)
-            }                  
+                //totalAmount += Number(contentTitle[item[i-1]-1].price)
+                let itemCounter = 1
+                for(let j = i; j<=counter; j++)
+                {
+                    if(item[i-1] == item[j])
+                    {
+                        itemCounter +=1;
+                    }
+                }
+                totalAmount += Number(contentTitle[item[i-1]-1].price) * itemCounter
+                dynamicCartSection(contentTitle[item[i-1]-1],itemCounter)
+                console.log(itemCounter)
+                i += itemCounter
+            }
+            amountUpdate(totalAmount)
         }
     }
         else
