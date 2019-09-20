@@ -6,16 +6,14 @@ if(document.cookie.indexOf(',counter=')>=0)
     document.getElementById("badge").innerHTML = counter
 }
 
-// function dynamicCartSection(ob,itemCounter)
-// {
-    let cartContainer = document.getElementById('cartContainer')
 
-    let boxContainerDiv = document.createElement('div')
-    boxContainerDiv.id = 'boxContainer'
+let cartContainer = document.getElementById('cartContainer')
 
+let boxContainerDiv = document.createElement('div')
+boxContainerDiv.id = 'boxContainer'
 
-
-    function dynamicCartSection(ob,itemCounter)
+// DYNAMIC CODE TO SHOW THE SELECTED ITEMS IN YOUR CART
+function dynamicCartSection(ob,itemCounter)
 {
     let boxDiv = document.createElement('div')
     boxDiv.id = 'box'
@@ -60,7 +58,7 @@ let h2Text = document.createTextNode('Total Amount')
 totalh2.appendChild(h2Text)
 totalDiv.appendChild(totalh2)
 
-
+// TO UPDATE THE TOTAL AMOUNT
 function amountUpdate(amount)
 {
     let totalh4 = document.createElement('h4')
@@ -90,12 +88,10 @@ buttonTag.onclick = function()
 {
     console.log("clicked")
 }  
-
-
 //dynamicCartSection()
-
 // console.log(dynamicCartSection());
 
+// BACKEND CALL
 let httpRequest = new XMLHttpRequest()
 let totalAmount = 0
 httpRequest.onreadystatechange = function()
@@ -116,21 +112,19 @@ httpRequest.onreadystatechange = function()
 
             let i;
             let totalAmount = 0
-            for(i=1; i<=counter; i++)
+            for(i=0; i<counter; i++)
             {
-                //totalAmount += Number(contentTitle[item[i-1]-1].price)
                 let itemCounter = 1
-                for(let j = i; j<=counter; j++)
-                {
-                    if(item[i-1] == item[j])
+                for(let j = i+1; j<counter; j++)
+                {   
+                    if(Number(item[j]) == Number(item[i]))
                     {
                         itemCounter +=1;
                     }
                 }
-                totalAmount += Number(contentTitle[item[i-1]-1].price) * itemCounter
-                dynamicCartSection(contentTitle[item[i-1]-1],itemCounter)
-                console.log(itemCounter)
-                i += itemCounter
+                totalAmount += Number(contentTitle[item[i]-1].price) * itemCounter
+                dynamicCartSection(contentTitle[item[i]-1],itemCounter)
+                i += (itemCounter-1)
             }
             amountUpdate(totalAmount)
         }
@@ -143,7 +137,6 @@ httpRequest.onreadystatechange = function()
 
 httpRequest.open('GET', 'https://5d76bf96515d1a0014085cf9.mockapi.io/product', true)
 httpRequest.send()
-
 
 
 
