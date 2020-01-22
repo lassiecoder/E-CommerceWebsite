@@ -1,5 +1,5 @@
 
-console.clear();
+// console.clear();
 let contentTitle;
 
 console.log(document.cookie)
