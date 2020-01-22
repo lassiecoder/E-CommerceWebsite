@@ -1,4 +1,4 @@
-console.clear();
+// console.clear();
 
 let contentTitle;
 
