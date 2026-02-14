@@ -20,3 +20,4 @@
 
 ### Order confirm page
 ![4](https://user-images.githubusercontent.com/17312616/65086779-b2efdd80-d9d0-11e9-95d5-4b1a48eafe04.png)
+"Contribution by Himanshi Badoliya" 
